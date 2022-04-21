@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.ArrayList;
+
 public class BSTreeNode<E> {
 
 	private BSTreeNode leftChild;
@@ -81,6 +83,56 @@ public class BSTreeNode<E> {
 		}
 	
 	}
+	
+	public void preorder(ArrayList<Integer> list) {
+		
+		// PREORDER: Log the current node into a list (passed-by-ref)
+		list.add(this.data);
 
+		// Prioritize the left subtree fist
+		if (this.leftChild != null) {
+			this.leftChild.preorder(list);
+		}
+
+		// Followed by the right subtree
+		if (this.rightChild != null) {
+			this.rightChild.preorder(list);
+		}
+		
+	}
+	
+	public void inorder(ArrayList<Integer> list) {
+
+		// Prioritize the left subtree fist
+		if (this.leftChild != null) {
+			this.leftChild.inorder(list);
+		}
+
+		// INORDER: Log the current node into a list (passed-by-ref)
+		list.add(this.data);
+		
+		// Followed by the right subtree
+		if (this.rightChild != null) {
+			this.rightChild.inorder(list);
+		}
+		
+	}
+	
+	public void postorder(ArrayList<Integer> list) {
+
+		// Prioritize the left subtree fist
+		if (this.leftChild != null) {
+			this.leftChild.postorder(list);
+		}
+
+		// Followed by the right subtree
+		if (this.rightChild != null) {
+			this.rightChild.postorder(list);
+		}
+
+		// POST-ORDER: Log the current node into a list (passed-by-ref)
+		list.add(this.data);
+					
+	}
 	
 }

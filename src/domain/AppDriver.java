@@ -2,6 +2,7 @@ package domain;
 
 import utilities.BSTree;
 import utilities.BSTreeNode;
+import utilities.Iterator;
 
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class AppDriver {
 		
 		BSTree tree = new BSTree();
 		
-		for (int x = 0; x < 1; x++) {
+		for (int x = 0; x < 10; x++) {
 			int rnVal = rng();
 			System.out.println("Adding random node: " + rnVal);
 			tree.add(rnVal);
@@ -43,6 +44,15 @@ public class AppDriver {
 		// Test for height
 		int treeHeight = tree.getHeight();
 		
+		Iterator t = tree.postorderIterator();
+
+		// Test iterator
+		
+//		while(t.hasNext()) {
+//			System.out.println("Next val: " + t.next());
+//		}
+
+			
 		System.out.println("Local tests finished");
 		
 	}

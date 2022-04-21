@@ -1,5 +1,8 @@
 package utilities;
 
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
 import exceptions.TreeException;
 
 
@@ -99,22 +102,53 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>{
 
 	@Override
 	public Iterator inorderIterator() {
-		// 
-		return null;
+		ArrayList<E> t = new ArrayList<E>();
+		this.root.inorder(t);
+		return new ArrayBasedIterator(t);
 	}
 
 	@Override
 	public Iterator preorderIterator() {
-		
-		return null;
+		ArrayList<E> t = new ArrayList<E>();
+		this.root.preorder(t);		
+		return new ArrayBasedIterator(t);
 	}
 
 	@Override
-	public Iterator postorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator postorderIterator() {	
+		ArrayList<E> t = new ArrayList<E>();
+		this.root.postorder(t);		
+		return new ArrayBasedIterator(t);
 	}
 
-	
+	private class ArrayBasedIterator implements Iterator<E> {
+		
+		private ArrayList<E> container;
+		private int currentIndex = 0;
+		
+		public ArrayBasedIterator(ArrayList<E> a) {
+			this.container = a;
+		}
+		
+		@Override
+		public boolean hasNext() {
+			
+			if (this.currentIndex < this.container.size()) {
+				return true;
+			}
+			
+			return false;
+		}
+		
+		@Override
+		public E next() throws NoSuchElementException {
+			if (this.currentIndex >= this.container.size()) {
+				throw new NoSuchElementException();
+			}
+			E toReturn = this.container.get(currentIndex++);
+			return toReturn;
+		}
+		
+	}
 	
 }
