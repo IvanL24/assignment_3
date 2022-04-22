@@ -9,9 +9,7 @@ import exceptions.TreeException;
 @SuppressWarnings("rawtypes")
 public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>{
 
-
 	private static final long serialVersionUID = 1L;
-	
 	
 	private BSTreeNode root;
 	private int sizeCounter = 0;
@@ -24,8 +22,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>{
 	@Override
 	public int getHeight() {
 		int height = this.root.findHeight(root);
-		
-		
+				
 		if (height > 0) {
 			// Include root with the height
 			height++;
@@ -80,16 +77,15 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>{
 	@Override
 	public boolean add(E newEntry) throws NullPointerException {
 		
-		int tempCast = (int)newEntry;
 		boolean inserted = false;
 		
 		// First check to see if the tree is empty
 		if (this.isEmpty()) {
-			this.root = new BSTreeNode(tempCast);
+			this.root = new BSTreeNode((Word)newEntry);
 			inserted = true;
 		}else {
 			// Otherwise, we call insert on the root
-			inserted = this.root.insert(tempCast);
+			inserted = this.root.insert((Word)newEntry);
 		}
 		
 		// After successful insertion, increment local node counter;

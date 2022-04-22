@@ -13,9 +13,14 @@ import exceptions.TreeException;
 
 // Imports for file operations
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 public class AppDriver {
 
@@ -109,26 +114,65 @@ public class AppDriver {
 		
 		System.out.println("Trying to read file");
 		
-		
 		ArrayList<Word> wordContainer = ProcessFile("./res/textfile.txt");
 		System.out.println("Got: " + wordContainer.size() + " words");
 		
-		System.out.println("End");
+		System.out.println("Creating a new tree");
+		BSTree tree = new BSTree();
 		
-		return;
-		
-//		System.out.println("Creating a new tree");
-//		
-//		BSTree tree = new BSTree();
-//		
 //		for (int x = 0; x < 10; x++) {
 //			int rnVal = rng();
 //			System.out.println("Adding random node: " + rnVal);
 //			tree.add(rnVal);
 //		}
 //		
-////		tree.add(70);
+//		tree.add(70);
 //		
+		
+		for (int x = 0; x < wordContainer.size(); x++) {
+			tree.add(wordContainer.get(x));
+		}
+		
+		System.out.println("Added words!");
+		
+		// Test for serialization
+//		try {
+//			
+//			System.out.println("Testing for serialization");
+//			FileOutputStream fileOut = new FileOutputStream("./test.ser");
+//			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+//			
+//			out.writeObject(tree);
+//			out.close();
+//			fileOut.close();
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		// Test for deserialization
+		
+		
+		try {
+			
+			System.out.println("Testing for deserialization");
+			BSTree importedTree = null;
+			FileInputStream fileIn = new FileInputStream("./test.ser");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			
+			importedTree = (BSTree)in.readObject();
+			in.close();
+			fileIn.close();
+			
+			System.out.println("Deserialization completed");
+
+			
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 //		System.out.println("Tree created successfully");
 //		
 //		// Test for contains

@@ -1,31 +1,38 @@
 package utilities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BSTreeNode<E> {
+public class BSTreeNode<E> implements Serializable {
 
 	private BSTreeNode leftChild;
 	private BSTreeNode rightChild;
 	private int data;
+	private Word word;
 	
-	public BSTreeNode(int val) {
-		this.data = val;
+	public BSTreeNode(Word wordObj) {
+		// Assign this.data to the hash code of the specific word
+		this.data = wordObj.word.hashCode();
+		// Store the raw object for serialization purposes
+		this.word = wordObj;
 	}
 	
-	public boolean insert(int val) {
+	public boolean insert(Word wordObj) {
 		
 		boolean added = false;
-			
+		
+		int val = wordObj.word.hashCode();
+		
 		// Check to see this node is smaller than the new node
 		if (val < this.data) {
 			
 			// If the left child has not been initialized
 			if (this.leftChild == null) {
-				this.leftChild = new BSTreeNode(val);
+				this.leftChild = new BSTreeNode(wordObj);
 				return true;
 			}else {
 				// Otherwise, do a recursive call to the left-child
-				added = this.leftChild.insert(val);
+				added = this.leftChild.insert(wordObj);
 			}
 			
 		}else if (val > this.data) {
@@ -33,11 +40,11 @@ public class BSTreeNode<E> {
 			// Otherwise, if the passed data is bigger than the current node.
 				if (this.rightChild == null) {
 					// If the right child doesn't exist, we create a new node.
-					this.rightChild = new BSTreeNode(val);
+					this.rightChild = new BSTreeNode(wordObj);
 					return true;
 				} else {
 					// Otherwise, do a recursive call to the right-child.
-					added = this.rightChild.insert(val);
+					added = this.rightChild.insert(wordObj);
 				}
 			
 		}
