@@ -92,10 +92,10 @@ public class BSTreeNode<E> implements Serializable {
 	
 	}
 	
-	public void preorder(ArrayList<Integer> list) {
+	public void preorder(ArrayList<Word> list) {
 		
 		// PREORDER: Log the current node into a list (passed-by-ref)
-		list.add(this.data);
+		list.add(this.word);
 
 		// Prioritize the left subtree fist
 		if (this.leftChild != null) {
@@ -109,7 +109,7 @@ public class BSTreeNode<E> implements Serializable {
 		
 	}
 	
-	public void inorder(ArrayList<Integer> list) {
+	public void inorder(ArrayList<Word> list) {
 
 		// Prioritize the left subtree fist
 		if (this.leftChild != null) {
@@ -117,7 +117,7 @@ public class BSTreeNode<E> implements Serializable {
 		}
 
 		// INORDER: Log the current node into a list (passed-by-ref)
-		list.add(this.data);
+		list.add(this.word);
 		
 		// Followed by the right subtree
 		if (this.rightChild != null) {
@@ -126,7 +126,7 @@ public class BSTreeNode<E> implements Serializable {
 		
 	}
 	
-	public void postorder(ArrayList<Integer> list) {
+	public void postorder(ArrayList<Word> list) {
 
 		// Prioritize the left subtree fist
 		if (this.leftChild != null) {
@@ -139,7 +139,7 @@ public class BSTreeNode<E> implements Serializable {
 		}
 
 		// POST-ORDER: Log the current node into a list (passed-by-ref)
-		list.add(this.data);
+		list.add(this.word);
 					
 	}
 	
