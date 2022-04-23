@@ -4,6 +4,7 @@ import utilities.BSTree;
 import utilities.BSTreeNode;
 import utilities.Iterator;
 import utilities.Location;
+import utilities.Node;
 import utilities.Word;
 
 import java.util.ArrayList;
@@ -198,7 +199,47 @@ public class AppDriver {
 //
 //			
 //		System.out.println("Local tests finished");
+		String arg1 = args[0];
+		String arg2 = args[1];
 		
+		try {
+			if(args.length == 2) {
+				System.out.println("working!");
+				System.out.println(arg1);
+			}
+			if(arg2.substring(0,1).equals("-")) {
+				System.out.println("true");
+				if(arg2.substring(1,2).equalsIgnoreCase("p")) {
+					System.out.println("true2");
+					if(arg2.substring(2,3).equalsIgnoreCase("f")) {
+						System.out.println("true3");
+						Scanner scan = new Scanner(new File("res/textfile.txt"));
+						
+						while(scan.hasNext()) {
+							String word = scan.next();
+							Node node = new Node(word);
+							String newWord = scan.next();
+							node.insertNode(newWord);
+							node.AscendingSort();
+								
+						}						
+
+						
+					}else if (arg2.substring(2,3).equalsIgnoreCase("l")) {
+						System.out.println("true L");
+
+						
+					}else if (arg2.substring(2,3).equalsIgnoreCase("o")) {
+						System.out.println("true O");
+
+						
+					}	
+				}
+				
+			}
+		}catch (Exception e) {
+			
+		}
 	}
 	
 }
