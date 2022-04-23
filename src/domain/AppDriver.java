@@ -121,18 +121,26 @@ public class AppDriver {
 		System.out.println("Creating a new tree");
 		BSTree tree = new BSTree();
 		
+		
+		String word1 = "Hello";
+		String word2 = "World";
+		
+		System.out.println("Comparing: " + word1.compareTo(word2));
+		
+		
 //		for (int x = 0; x < 10; x++) {
 //			int rnVal = rng();
 //			System.out.println("Adding random node: " + rnVal);
 //			tree.add(rnVal);
 //		}
-//		
+		
 //		tree.add(70);
-//		
+		
 		
 		for (int x = 0; x < wordContainer.size(); x++) {
 			tree.add(wordContainer.get(x));
 		}
+
 		
 		System.out.println("Added words!");
 		
@@ -155,33 +163,47 @@ public class AppDriver {
 		// Test for deserialization
 		
 		
-		try {
-			
-			System.out.println("Testing for deserialization");
-			BSTree importedTree = null;
-			FileInputStream fileIn = new FileInputStream("./test.ser");
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			
-			importedTree = (BSTree)in.readObject();
-			in.close();
-			fileIn.close();
-			
-			System.out.println("Deserialization completed");
-
-			
-		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			
+//			System.out.println("Testing for deserialization");
+//			BSTree importedTree = null;
+//			FileInputStream fileIn = new FileInputStream("./test.ser");
+//			ObjectInputStream in = new ObjectInputStream(fileIn);
+//			
+//			importedTree = (BSTree)in.readObject();
+//			in.close();
+//			fileIn.close();
+//			
+//			System.out.println("Deserialization completed");
+//
+//			
+//		} catch (IOException | ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 //		System.out.println("Tree created successfully");
 //		
 //		// Test for contains
-//		boolean treeHas = tree.contains(70);
-//		boolean treeNotHave = tree.contains(71);
+		
+		Word word = new Word("DoesNotExist");
+		boolean treeHas = tree.contains(wordContainer.get(1));
+		boolean treeNotHave = tree.contains(word);
+		
+		
+		
+		System.out.println("Word has: " + treeHas);
+		System.out.println("Word doesn't have: " + treeNotHave);
 //		
+		
+		
 //		// Test for find
-//		BSTreeNode foundNode = tree.search(70);
+		
+		BSTreeNode foundNode = tree.search(wordContainer.get(1));
+		System.out.println(foundNode.word.word);
+		
+		
+		
 //		
 //		// Test for size
 //		int treeSize = tree.size();
@@ -199,47 +221,52 @@ public class AppDriver {
 //
 //			
 //		System.out.println("Local tests finished");
-		String arg1 = args[0];
-		String arg2 = args[1];
 		
-		try {
-			if(args.length == 2) {
-				System.out.println("working!");
-				System.out.println(arg1);
-			}
-			if(arg2.substring(0,1).equals("-")) {
-				System.out.println("true");
-				if(arg2.substring(1,2).equalsIgnoreCase("p")) {
-					System.out.println("true2");
-					if(arg2.substring(2,3).equalsIgnoreCase("f")) {
-						System.out.println("true3");
-						Scanner scan = new Scanner(new File("res/textfile.txt"));
-						
-						while(scan.hasNext()) {
-							String word = scan.next();
-							Node node = new Node(word);
-							String newWord = scan.next();
-							node.insertNode(newWord);
-							node.AscendingSort();
-								
-						}						
-
-						
-					}else if (arg2.substring(2,3).equalsIgnoreCase("l")) {
-						System.out.println("true L");
-
-						
-					}else if (arg2.substring(2,3).equalsIgnoreCase("o")) {
-						System.out.println("true O");
-
-						
-					}	
-				}
-				
-			}
-		}catch (Exception e) {
-			
-		}
+		
+		// --- Strings Parser --- 
+		
+//		String arg1 = args[0];
+//		String arg2 = args[1];
+//		
+//		try {
+//			if(args.length == 2) {
+//				System.out.println("working!");
+//				System.out.println(arg1);
+//			}
+//			if(arg2.substring(0,1).equals("-")) {
+//				System.out.println("true");
+//				if(arg2.substring(1,2).equalsIgnoreCase("p")) {
+//					System.out.println("true2");
+//					if(arg2.substring(2,3).equalsIgnoreCase("f")) {
+//						System.out.println("true3");
+//						Scanner scan = new Scanner(new File("res/textfile.txt"));
+//						
+//						while(scan.hasNext()) {
+//							String word = scan.next();
+//							Node node = new Node(word);
+//							String newWord = scan.next();
+//							node.insertNode(newWord);
+//							node.AscendingSort();
+//								
+//						}						
+//
+//						
+//					}else if (arg2.substring(2,3).equalsIgnoreCase("l")) {
+//						System.out.println("true L");
+//
+//						
+//					}else if (arg2.substring(2,3).equalsIgnoreCase("o")) {
+//						System.out.println("true O");
+//
+//						
+//					}	
+//				}
+//				
+//			}
+//		}catch (Exception e) {
+//			
+//		}
+		
 	}
 	
 }

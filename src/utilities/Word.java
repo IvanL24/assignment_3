@@ -19,7 +19,6 @@ public class Word implements Comparable<Word>, Serializable {
 
 	@Override
 	public int compareTo(Word o) {
-		// TODO Auto-generated method stub
 		return this.word.compareTo(o.word);
 	}
 	

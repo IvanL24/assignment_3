@@ -8,7 +8,7 @@ public class BSTreeNode<E> implements Serializable {
 	private BSTreeNode leftChild;
 	private BSTreeNode rightChild;
 	private int data;
-	private Word word;
+	public Word word;
 	
 	public BSTreeNode(Word wordObj) {
 		// Assign this.data to the hash code of the specific word
@@ -52,21 +52,22 @@ public class BSTreeNode<E> implements Serializable {
 		return added;
 	}
 	
-	public BSTreeNode find(int val) {
+	public BSTreeNode find(Word wordObj) {
 		
 		BSTreeNode found = null;
-		
+		int val = wordObj.word.hashCode();
+	
 		// Check to see if current node matches
-		if (val == this.data) {
+		if (wordObj.word.hashCode() == this.data) {
 			return this;
 		}else {
 			
 			if (val < this.data && this.leftChild != null) {
 				// Make a recursive call on the left child
-				found = this.leftChild.find(val);
+				found = this.leftChild.find(wordObj);
 			}else if (val > this.data && this.rightChild != null) {
 				// Make a recursive child on the right child
-				found = this.rightChild.find(val);
+				found = this.rightChild.find(wordObj);
 			}
 			
 		}

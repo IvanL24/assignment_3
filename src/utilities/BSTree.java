@@ -54,7 +54,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>{
 
 	@Override
 	public boolean contains(E entry) throws TreeException {
-		int tempCast = (int)entry;
+		Word tempCast = (Word)entry;
 		BSTreeNode found = this.root.find(tempCast);
 		
 		return found != null;
@@ -63,7 +63,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>{
 	@Override
 	public BSTreeNode search(E entry) throws TreeException {
 
-		int tempCast = (int)entry;
+		Word tempCast = (Word)entry;
 		
 		if (this.isEmpty()) {
 			throw new TreeException("Tree is empty");
